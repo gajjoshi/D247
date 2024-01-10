@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: url("./p.jpg");
+  background-size: cover;
 }
 
 .App-logo {
@@ -13,6 +15,12 @@
   height: 110vh; /* Adjust the height as needed */
   margin-left: 400px;
 }
+.wheel
+{
+  margin-top: 10%;
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -43,3 +51,5 @@
     transform: rotate(360deg);
   }
 }
+
+

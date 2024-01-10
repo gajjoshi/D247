@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WheelComponent from 'react-wheel-of-prizes';
 import Confetti from 'react-dom-confetti';
 import './App.css';
-import './Bg.css';
-import Popup from './Popup';
+// import Popup from './Popup';
 
 export default function App() {
   const segments = [
-    "better luck next time",
-    "won 70",
-    "won 10",
-    "better luck next time",
-    "won 2",
-    "won uber pass",
-    "asd",
-    "sefsef",
-    "sedfsef",
-    "sfsf",
-    "adesdfe"
+    " bonus 1",
+    " bonus 2",
+    " bonus 3",
+    " bonus 4",
+    " bonus 5",
+    " bonus 6",
+    " bonus 7",
+    " bonus 8",
+    " bonus 9",
+    " bonus 10",
+    " bonus 11"
   ];
 
   const segColors = [
@@ -35,20 +34,45 @@ export default function App() {
 
   const [confetti, setConfetti] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [showWinningPopup, setShowWinningPopup] = useState(false);
+  const [wheelSize, setWheelSize] = useState(calculateWheelSize());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWheelSize(calculateWheelSize());
+    };
+
+    // Attach the event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const onFinished = (winner) => {
     console.log(winner);
-    setConfetti(true); // Activate confetti animation when the spin is done
-    setPopupOpen(true); // Open the pop-up when the wheel stops
-    const closePopup = () => {
-      console.log('Closing the pop-up');
-      setPopupOpen(false);
-    };
+    setConfetti(true);
+    setPopupOpen(true);
+
+    // Check if the user won a prize and show the winning pop-up
+    if (winner !== "better luck next time") {
+      setShowWinningPopup(true);
+    }
   };
 
   const closePopup = () => {
-    setPopupOpen(false); // Close the pop-up
+    setPopupOpen(false);
   };
+
+  const closeWinningPopup = () => {
+    setShowWinningPopup(false);
+  };
+
+  function calculateWheelSize() {
+    return window.innerWidth > 600 ? 295 : 150; // Adjust the size based on your desired logic
+  }
 
   return (
     <div className="app-container">
@@ -64,7 +88,7 @@ export default function App() {
               contrastColor="white"
               buttonText="Spin"
               isOnlyOnce={true}
-              size={295}
+              size={wheelSize}
               upDuration={500}
               downDuration={600}
               fontFamily="Arial"
@@ -75,7 +99,7 @@ export default function App() {
           </div>
         </div>
       </div>
-      <Popup isOpen={isPopupOpen} onClose={closePopup} /> {/* Render the Popup component conditionally */}
+
     </div>
   );
 }
