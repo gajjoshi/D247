@@ -1,8 +1,39 @@
+
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 .App {
   text-align: center;
-  background-image: url("./p.jpg");
-  background-size: cover;
+  position: relative;
+  z-index: 1;
+
+
 }
+.logo{
+
+  text-align: center;
+  width: 100%;
+  height: auto;
+  /* margin: 0 auto;  */
+}
+.app-container {
+  position: relative;
+}
+
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+
+  
+}
+
 
 .App-logo {
   height: 40vmin;
@@ -15,10 +46,10 @@
   height: 110vh; /* Adjust the height as needed */
   margin-left: 400px;
 }
-.wheel
+/* .wheel
 {
   margin-top: 10%;
-}
+} */
 
 
 
@@ -51,5 +82,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
 
 

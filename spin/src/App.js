@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import WheelComponent from 'react-wheel-of-prizes';
 import Confetti from 'react-dom-confetti';
 import './App.css';
+import casino from './casino3.mp4'
+import logo from './D247.png'
+
 // import Popup from './Popup';
 
 export default function App() {
@@ -75,7 +78,17 @@ export default function App() {
   }
 
   return (
+    <>
+    <div className='logo'>
+    <img src={logo} alt="React Image" />
+
+
+    </div>
     <div className="app-container">
+            <video autoPlay muted loop className="video-background">
+        <source src={casino} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="background-image"></div>
       <div className="App">
         <div className="wheel-container">
@@ -95,11 +108,12 @@ export default function App() {
             />
           </div>
           <div className="confetti">
-            <Confetti active={confetti} config={{ angle: 90, spread: 360, startVelocity: 120, elementCount: 4000, position: 'fixed', origin: { x: 0.1, y: 0.5 } }} />
+            <Confetti active={confetti} config={{ angle: 90, spread: 360, startVelocity: 100, elementCount: 2500, position: 'fixed', origin: { x: 1, y: 0.5 } }} />
           </div>
         </div>
       </div>
 
     </div>
+    </>
   );
 }
